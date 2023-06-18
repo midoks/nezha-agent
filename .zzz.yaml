@@ -14,14 +14,14 @@ ext:
 - tmpl
 - ini
 - html
-enablerun: false
+enablerun: true
 action:
   before:
   - find . -path vendor -prune -name ".DS_Store" -print -delete
   - go mod tidy && go mod vendor
   after:
   - ps -ef|grep 'nezha-agent'| grep -v grep | grep -v git | awk '{print $2}' | xargs kill -9 
-  - ./nezha-agent -s 127.0.0.1:5222 -p yuuYWQEIRPw5vqa7jp &
+  - #./nezha-agent -d -s 127.0.0.1:5222 -p yuuYWQEIRPw5vqa7jp &
   - echo "start nezha-agent"
   exit:
   - ps -ef|grep 'nezha-agent'| grep -v grep | grep -v git | awk '{print $2}' | xargs kill -9
